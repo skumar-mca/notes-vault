@@ -58,7 +58,7 @@
         /></a> -->
       </span>
 
-      <span *ngIf="!userProfile.token">
+      <!-- <span *ngIf="!userProfile.token">
         <a routerLink="/admin/login" routerLinkActive="todo-active-link"
           >Login</a
         >
@@ -66,14 +66,14 @@
           >Register</a
         >
 
-        <!-- <a routerLink="/admin/register" routerLinkActive="todo-active-link">Register</a> -->
-      </span>
+         <a routerLink="/admin/register" routerLinkActive="todo-active-link">Register</a> 
+      </span> -->
     </li>
 
     <div
       ngbDropdown
       class="d-lg-none d-sm-none d-xs-block"
-      style="width: 150px"
+      style="width: 235px"
     >
       <button
         class="btn btn-secondary btn-sm selected-project"
@@ -86,6 +86,17 @@
         <button (click)="onNavigateTo('/dashboard')" class="dropdown-item">
           Home
         </button>
+
+        <button (click)="onNavigateTo('/dashboard')" class="dropdown-item">
+          <a
+            href="https://skumar-mca.github.io/utilities/#/"
+            target="_blank"
+            class="text-dark"
+            routerLinkActive="todo-active-link"
+            >Utilities</a
+          >
+        </button>
+
         <!-- <button
           *ngIf="userProfile.isSuperAdmin"
           (click)="onNavigateTo('/admin')"
@@ -107,6 +118,7 @@
           Encode/Decode
         </button> -->
       </div>
+
       <a routerLink="/qr-view" class="pl-3" routerLinkActive="todo-active-link"
         ><img src="assets/images/qr.png" class="qr-icon"
       /></a>
@@ -119,6 +131,15 @@
         routerLinkActive="todo-active-link"
         >Home</a
       >
+
+      <a
+        href="https://skumar-mca.github.io/utilities/#/"
+        target="_blank"
+        class="pl-3"
+        routerLinkActive="todo-active-link"
+        >Utilities</a
+      >
+
       <a
         *ngIf="userProfile.isSuperAdmin"
         routerLink="/admin"
