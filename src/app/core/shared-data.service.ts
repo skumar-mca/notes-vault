@@ -1,17 +1,28 @@
-import { Injectable } from '@angular/core';
-import * as lodash from 'lodash';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable } from "@angular/core";
+import * as lodash from "lodash";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class SharedDataService {
   public selectedProject = null;
-  public userProfile: IUserProfile = { isAdmin: false, token: null, name: 'Guest', role: '', isSuperAdmin: false, userId: '' };
+  public userProfile: IUserProfile = {
+    isAdmin: false,
+    token: null,
+    name: "Guest",
+    role: "",
+    isSuperAdmin: false,
+    userId: "",
+  };
 
   constructor() {
-    this.projectSource.subscribe((list) => { this.projectList = list });
-    this.userChangeSource.subscribe((userProfile) => { this.userProfile = userProfile; })
+    this.projectSource.subscribe((list) => {
+      this.projectList = list;
+    });
+    this.userChangeSource.subscribe((userProfile) => {
+      this.userProfile = userProfile;
+    });
   }
 
   /**
@@ -21,25 +32,34 @@ export class SharedDataService {
   public projectSource = new BehaviorSubject([]);
   projectList = [];
   updateProjectList(list) {
-    this.projectSource.next(list)
+    this.projectSource.next(list);
   }
 
   getProjectById(id) {
-    return this.projectList.filter((itm) => { return itm.projectAlias === id })[0];
+    return (
+      this.projectList &&
+      this.projectList.filter((itm) => {
+        return itm.projectAlias === id;
+      })[0]
+    );
   }
 
   addProjectNameField(list) {
     return list.map((itm) => {
-      itm.projectName = lodash.get(this.getProjectById(itm.projectId), 'name', itm.projectId);
+      itm.projectName = lodash.get(
+        this.getProjectById(itm.projectId),
+        "name",
+        itm.projectId
+      );
     });
   }
 
   /**
    * Subscribe to project change event
    */
-  public projectChangeSource = new BehaviorSubject('no');
+  public projectChangeSource = new BehaviorSubject("no");
   projectChangeEvent(didProjectChanged: string) {
-    this.projectChangeSource.next(didProjectChanged)
+    this.projectChangeSource.next(didProjectChanged);
   }
 
   /**
@@ -56,7 +76,6 @@ export class SharedDataService {
    */
   public editModeChangeSource = new BehaviorSubject(false);
   editModeChangeEvent(isEnableEditing: boolean) {
-    this.editModeChangeSource.next(isEnableEditing)
+    this.editModeChangeSource.next(isEnableEditing);
   }
-
 }
