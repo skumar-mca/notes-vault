@@ -1,0 +1,49 @@
+<div class="content-box" id="content-box">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="div-left">
+        <app-left-menu></app-left-menu>
+      </div>
+      <div class="div-right" id="div-right">
+        <app-loader [isLoading]="isLoading" [showLargeLoader]="true"></app-loader>
+        <div *ngIf="!isLoading">
+          <h3>Allocations</h3>
+
+          <table class="table table-sm table-bordered table-white">
+            <tr>
+              <th>#</th>
+              <th>Project ID</th>
+              <th>Percentage</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Status</th>
+              <th class="th-action">Actions</th>
+            </tr>
+
+            <tr *ngFor="let alloc of allocationsList; let i=index;">
+              <td>{{i+1}}</td>
+              <td>{{alloc.projectName || alloc.projectId}}</td>
+              <td>{{alloc.percentage}}</td>
+              <td>{{alloc.startDate | date}}</td>
+              <td>{{alloc.endDate| date}}</td>
+              <td>{{alloc.isActive ? 'Active' :  'Inactive'}}</td>
+
+              <td class="text-center">
+                <app-action-button [obj]="alloc" (onEdit)="edit($event)" (onDelete)="delete($event)"
+                  caption="allocation">
+                </app-action-button>
+              </td>
+            </tr>
+
+            <tr *ngIf="allocationsList.length===0">
+              <td colspan="7">No records found.</td>
+            </tr>
+          </table>
+          <button class="btn btn-sm btn-primary" (click)="addAllocation()">Add</button>
+        </div>
+
+        <!-- <button (click)="importJSRules()">Import JS Rules</button> -->
+      </div>
+    </div>
+  </div>
+</div>

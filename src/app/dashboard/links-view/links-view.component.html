@@ -1,0 +1,124 @@
+<div class="content-box" id="content-box">
+  <div class="row">
+    <div class="col-sm-12 padding-right-0">
+      <div class="div-left">
+        <app-left-menu linktype="dashboard"></app-left-menu>
+      </div>
+
+      <div class="div-right" id="div-right">
+        <app-loader
+          [isLoading]="isLoading"
+          [showLargeLoader]="true"
+        ></app-loader>
+
+        <div *ngIf="!isLoading" class="custom-list-group-box">
+          <div *ngIf="linksList.length === 0">
+            <div class="custom-list-group">
+              <span class="text-secondary">No links found!</span>
+            </div>
+          </div>
+
+          <div *ngIf="linksList.length > 0">
+            <div *ngIf="isListFromCache" class="cache-info">
+              Result is from cache, updated
+              <b>{{ this.cacheDuration | dateDisplay }}</b
+              >.
+              <a href="#" (click)="refreshList($event)">Refresh Now</a>
+            </div>
+
+            <div class="filter-box">
+              <div class="col-lg-12 padding-right-0 margin-bottom-10">
+                <span class="spn-page-title">Bookmarks</span>
+
+                <a
+                  href="#"
+                  *ngIf="isAdmin && isEditMode"
+                  (click)="add($event)"
+                  class="badge badge-primary margin-left-20"
+                  >Add</a
+                >
+
+                <input
+                  type="text"
+                  class="input-grey float-right"
+                  [(ngModel)]="searchText"
+                  placeholder="search.."
+                />
+              </div>
+            </div>
+
+            <div
+              class="custom-list-group"
+              *ngFor="
+                let link of linksList
+                  | filter : searchText
+                  | slice
+                    : (page - 1) * pageSize
+                    : (page - 1) * pageSize + pageSize;
+                let i = index
+              "
+            >
+              <a
+                class="custom-list-group-item"
+                href="{{ link.url }}"
+                target="_blank"
+                title="click to open in new tab"
+                >{{ link.title }}</a
+              >
+              <app-copy-to-clipboard [text]="link.url"></app-copy-to-clipboard>
+
+              <div class="fav-icon">
+                <div
+                  *ngIf="!link.isFav"
+                  (click)="saveInRecentList(link, true)"
+                  class="icons i-fav"
+                  title="set as favourite"
+                  style="height: 50px; width: 50px"
+                ></div>
+                <div
+                  *ngIf="link.isFav"
+                  (click)="saveInRecentList(link, false)"
+                  class="icons i-fav-sel"
+                  title="remove from favourite"
+                  style="height: 50px; width: 50px"
+                ></div>
+              </div>
+
+              <span *ngIf="isAdmin && isEditMode">
+                <a
+                  href="#"
+                  (click)="edit($event, link)"
+                  class="float-right margin-left-20"
+                  ><img
+                    src="assets/images/icons/pencil.png"
+                    class="action-icon"
+                /></a>
+                <a
+                  href="#"
+                  (click)="delete($event, link)"
+                  class="float-right margin-left-20"
+                  ><span class="icons i-trash" title="delete"></span>
+                </a>
+              </span>
+
+              <small class="text-secondary margin-left-20 bold float-right">{{
+                link.projectName || link.projectId
+              }}</small>
+
+              <div class="link-url text-ellipses">
+                <small>{{ link.url }}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <ngb-pagination
+          *ngIf="pageSize < linksList.length"
+          [(page)]="page"
+          [pageSize]="pageSize"
+          [collectionSize]="linksList.length"
+        ></ngb-pagination>
+      </div>
+    </div>
+  </div>
+</div>

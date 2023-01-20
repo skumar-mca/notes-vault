@@ -1,0 +1,41 @@
+<div class="content-box" id="content-box">
+    <div class="row">
+        <div class="col-sm-12 pr-0">
+            <div class="div-left">
+                <app-left-menu linktype="dashboard"></app-left-menu>
+            </div>
+            <div class="div-right" id="div-right">
+
+                <app-todo></app-todo>
+
+                <br />
+
+                <div *ngIf="recentLinksList.length>0">
+                    <div class="spn-page-title margin-bottom-10">Favourite bookmarks</div>
+
+                    <div class="custom-list-group" *ngFor="let link of recentLinksList; let i=index;">
+                        <a class="custom-list-group-item" href="{{link.url}}" (click)="saveInRecentList(link)"
+                            target="_blank" title="click to open in new tab">{{link.title}}</a>
+                        <app-copy-to-clipboard [text]="link.url"></app-copy-to-clipboard>
+
+                        <div class="float-right margin-left-20 cursor-pointer">
+                            <div *ngIf="link.isFav" (click)="removeFromFav(link)" class="icons i-fav-sel"
+                                title="remove from favourite" style="height: 50px;width: 50px"></div>
+                        </div>
+
+                        <small
+                            class="text-secondary margin-left-20 bold float-right">{{link.projectName || link.projectId}}</small>
+                        <div class="link-url text-ellipses"><small>{{link.url}}</small></div>
+                    </div>
+                </div>
+
+                <br />
+
+                <app-allocations-view></app-allocations-view>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

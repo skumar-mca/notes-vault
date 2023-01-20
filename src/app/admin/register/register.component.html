@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-lg-5 col-sm-8 col-xs-12 alert alert-info register-form">
+
+    <form novalidate [formGroup]="form" (submit)="form.valid && register()">
+      <div class="row">
+        <div class="col-sm-4 field-label field-divider">Name <span class="required">*</span></div>
+        <div class="col-sm-8">
+          <input [formControl]="name" id="name" class="form-control" required />
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4 field-label field-divider">Email <span class="required">*</span></div>
+        <div class="col-sm-8"><input type="email" formControlName="username" class="form-control" required />
+          <div *ngIf="username.touched && username.errors?.pattern" class="required">Please enter valid email address.
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4 field-label field-divider">Password <span class="required">*</span></div>
+        <div class="col-sm-8"><input type="password" formControlName="password" class="form-control" required /></div>
+      </div>
+
+      <br />
+      <div class="row">
+        <div class="col-sm-12">
+          <app-loader [isLoading]="isLoading"></app-loader>
+          <button type="submit" class="btn btn-block btn-primary">Register</button>
+          <span class="text-danger">{{errorMessage}}</span>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>

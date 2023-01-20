@@ -1,0 +1,126 @@
+<app-loader [isLoading]="isLoading" [showLargeLoader]="true"></app-loader>
+<div *ngIf="!isLoading">
+  <div *ngIf="allocationsList.length === 0">
+    <div class="custom-list-group">
+      <span class="text-secondary">No allocations found!</span>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="allocationsList.length > 0">
+    <div class="col-sm-7 col-xs-12">
+      <div class="spn-page-title margin-bottom-10">Allocations</div>
+
+      <div class="col-xs-12" *ngIf="allocationsList.length === 0">
+        <a
+          href="javascript:void(0)"
+          class="list-group-item list-group-item-action flex-column align-items-start"
+        >
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">No allocations found.</h5>
+          </div>
+        </a>
+      </div>
+
+      <div
+        class="custom-list-group"
+        *ngFor="let alloc of allocationsList; let i = index"
+      >
+        <span class="custom-list-group-item"
+          >{{ alloc.projectName || alloc.projectId }}
+          <small class="text-muted"
+            >Started on: {{ alloc.startDate | date }}</small
+          >
+
+          <span *ngIf="alloc.notes && alloc.notes.trim().length > 1">
+            <a
+              href="#"
+              (click)="noop($event, alloc)"
+              title="view notes"
+              class="margin-left-20 margin-right-10"
+            >
+              <img src="assets/images/icons/info.png" class="action-icon" />
+            </a>
+          </span>
+        </span>
+        <span class="badge badge-secondary float-right"
+          >{{ alloc.percentage }}%</span
+        >
+        <div class="link-url text-ellipses">
+          <small class="text-muted"
+            >{{ alloc.percentage / 100 | timeDuration : 1 }} a <b>Day</b></small
+          >
+          <span class="time-sep">|</span>
+          <small class="text-muted"
+            >{{ alloc.percentage / 100 | timeDuration : 5 }} a
+            <b>Week</b></small
+          >
+          <span class="time-sep">|</span>
+          <small class="text-muted"
+            >{{ alloc.percentage / 100 | timeDuration : 20 }} a
+            <b>Month</b></small
+          >
+          <small class="text-muted float-right"
+            >{{
+              alloc.percentage / 100 | timeDuration : selectedDurationOption
+            }}
+            in
+            <input
+              type="text"
+              [(ngModel)]="selectedDurationOption"
+              class="duration-option"
+            />
+            <b>day(s)</b></small
+          >
+        </div>
+
+        <div *ngIf="alloc.showNotes" class="div-notes">
+          <small class="text-muted"
+            ><b>Notes</b><br />
+            <textarea
+              class="txtarea-notes"
+              disabled="true"
+              value="{{ alloc.notes }}"
+            ></textarea>
+          </small>
+        </div>
+      </div>
+      <br />
+      <div class="text-secondary">
+        <img src="assets/images/icons/info.png" class="action-icon" />
+        <small> Working hours a day: <b>8 Hrs</b></small>
+      </div>
+    </div>
+    <div class="col-sm-5 col-xs-12">
+      <canvas
+        class="margin-auto"
+        id="myChart"
+        width="300"
+        height="300"
+      ></canvas>
+    </div>
+  </div>
+
+  <div class="row max-capacity" *ngIf="totalCapacity > 100">
+    <div class="col-sm-12">
+      <div class="alert alert-danger">
+        Hey, You are working <b>{{ totalCapacity - 100 }}%</b> more than allowed
+        capacity. <b>Current capacity: {{ totalCapacity }}%</b>
+        <div class="text-secondary">
+          <small>Capacity should not be greater than 100%.</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br />
+  <div class="row">
+    <div class="col-sm-12">
+      <div *ngIf="isListFromCache" class="cache-info col-sm-12 text-left">
+        Result is from cache, updated
+        <b>{{ this.cacheDuration | dateDisplay }}</b
+        >.
+        <a href="#" (click)="refreshList($event)">Refresh Now</a>
+      </div>
+    </div>
+  </div>
+</div>

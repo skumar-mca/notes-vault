@@ -1,0 +1,459 @@
+/* You can add global styles to this file, and also import other style files */
+
+.div-left {
+  display: inline-block;
+}
+
+.cache-info {
+  text-align: center;
+  margin-top: -15px;
+  margin-bottom: 20px;
+  color: #6400ff;
+}
+
+.div-right {
+  margin-left: 200px;
+}
+
+.content-box {
+  overflow: auto;
+  background-color: #f3f3f3;
+  padding: 10px 10px 50px 10px;
+}
+
+.row {
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+}
+
+.modal-xxl .modal-dialog {
+  max-width: 98%;
+}
+
+.table-white {
+  background-color: white;
+}
+
+/* input.ng-invalid {
+  border: 1px solid red !important;
+}
+
+input.ng-valid {
+  border: 1px solid green !important;
+} */
+
+.form-control {
+  height: calc(1.2em + 0.55rem + 1px) !important;
+  padding: 0.175rem 0.25rem !important;
+}
+
+.modal-header {
+  padding: 2px 15px 2px 10px !important;
+  background-color: #e9eaf1 !important;
+}
+
+.modal-footer {
+  padding: 5px 25px 5px 10px !important;
+  background-color: #e9eaf1 !important;
+}
+
+.modal-title {
+  font-size: 1.2rem !important;
+}
+
+.field-label {
+  font-size: 0.8em;
+  font-weight: bold;
+  color: #443a3a;
+  margin-top: 5px;
+}
+
+.left-menu {
+  background-color: #f3f2f2;
+  height: 92vh;
+  margin: -26px 0px 0px -20px;
+  max-width: 250px;
+  border-right: 1px solid #ded6d6;
+  z-index: 0;
+  padding: 0px 0px 10px 10px;
+  position: fixed;
+  width: 200px;
+}
+
+.light-blue-backdrop {
+  background-color: #5cb3fd !important;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.div-inline {
+  display: inline;
+}
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+}
+
+.margin-auto {
+  margin: auto;
+}
+
+/* Overriding defaults - STARTS */
+
+body {
+  font-size: 0.9rem !important;
+}
+
+.table-sm td,
+.table-sm th {
+  padding: 0.1rem 0.1rem 0.1rem 0.2rem !important;
+}
+
+.col,
+.col-1,
+.col-10,
+.col-11,
+.col-12,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-auto,
+.col-lg,
+.col-lg-1,
+.col-lg-10,
+.col-lg-11,
+.col-lg-12,
+.col-lg-2,
+.col-lg-3,
+.col-lg-4,
+.col-lg-5,
+.col-lg-6,
+.col-lg-7,
+.col-lg-8,
+.col-lg-9,
+.col-lg-auto,
+.col-md,
+.col-md-1,
+.col-md-10,
+.col-md-11,
+.col-md-12,
+.col-md-2,
+.col-md-3,
+.col-md-4,
+.col-md-5,
+.col-md-6,
+.col-md-7,
+.col-md-8,
+.col-md-9,
+.col-md-auto,
+.col-sm,
+.col-sm-1,
+.col-sm-10,
+.col-sm-11,
+.col-sm-12,
+.col-sm-2,
+.col-sm-3,
+.col-sm-4,
+.col-sm-5,
+.col-sm-6,
+.col-sm-7,
+.col-sm-8,
+.col-sm-9,
+.col-sm-auto,
+.col-xl,
+.col-xl-1,
+.col-xl-10,
+.col-xl-11,
+.col-xl-12,
+.col-xl-2,
+.col-xl-3,
+.col-xl-4,
+.col-xl-5,
+.col-xl-6,
+.col-xl-7,
+.col-xl-8,
+.col-xl-9,
+.col-xl-auto {
+  padding-left: 0px !important;
+}
+
+/* Overriding defaults - ENDS */
+
+.custom-list-group {
+  border-top: 1px solid #efefef;
+  border-right: 1px solid #efefef;
+  padding: 10px;
+  border-left: 1px solid #efefef;
+  background: white;
+}
+
+.custom-list-group:hover {
+  background-color: #f9f9f9;
+}
+
+.custom-list-group:first {
+  border-bottom: 1px solid #efefef;
+  border-top: 1px solid #efefef;
+}
+
+.custom-list-group:last-child {
+  border-bottom: 1px solid #efefef;
+}
+
+.custom-list-group-item {
+  color: #2553bf;
+  font-weight: bold;
+  text-decoration: none !important;
+}
+
+.input-grey {
+  height: 25px;
+  padding: 1px 2px 2px 9px;
+  font-size: 0.8rem;
+  border: 1px solid #e0dada;
+  background-color: #fdfdfd;
+  max-width: 85px;
+}
+
+.content-heading {
+  font-weight: bold;
+  color: #497ead;
+  margin-bottom: 10px;
+}
+
+.selected-item {
+  background-color: #fdfbb4;
+  font-weight: bold;
+}
+
+.input-grey:focus {
+  outline: none;
+}
+
+.btn-xs {
+  padding: 0px 5px 2px 5px !important;
+  font-size: 13px !important;
+}
+
+.padding-right-0 {
+  padding-right: 0px !important;
+}
+
+.margin-bottom-10 {
+  margin-bottom: 10px;
+}
+
+.margin-top-10 {
+  margin-top: 10px;
+}
+
+.margin-top-5 {
+  margin-top: 5px;
+}
+
+.margin-bottom-5 {
+  margin-bottom: 5px;
+}
+
+.margin-left-20 {
+  margin-left: 10px;
+}
+
+.margin-right-10 {
+  margin-right: 10px;
+}
+
+.spn-page-title {
+  font-size: 1.1rem;
+  color: #8e8c8c;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.angular-editor-toolbar-set .select-custom-style,
+.angular-editor-toolbar-set #toggleEditorMode- {
+  display: none;
+}
+
+.th-action {
+  width: 65px;
+}
+
+.text-ellipses {
+  text-overflow: ellipsis;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.field-divider {
+  margin-bottom: 10px;
+}
+
+.action-icon {
+  width: 12px;
+  height: 12px;
+}
+
+/* Scroll styles STARTS */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Scroll styles ENDS */
+
+/* Icon sprites START */
+
+.icons {
+  background-image: url("assets/images/icons-sprites-1.png");
+  background-repeat: no-repeat;
+  display: inline;
+  padding: 0px 0px 0px 21px;
+  z-index: 999999;
+}
+
+.i-fav {
+  padding: 0px 0px 0px 14px !important;
+  background-position: -180px -41px;
+}
+
+.i-fav-sel {
+  padding: 0px 0px 0px 14px !important;
+  background-position: -180px -7px;
+}
+
+.i-time {
+  padding: 0px 7px 0px 14px !important;
+  background-position: -143px -313px;
+}
+
+.i-trash {
+  padding: 0px 0px 0px 14px !important;
+  background-position: -112px -177px;
+}
+
+.i-edit {
+  padding: 0px 0px 0px 19px !important;
+  background-position: -143px -6px;
+}
+
+.i-lock {
+  padding: 1px 0px 0px 17px !important;
+  background-position: -281px -142px;
+}
+
+.i-lock-open {
+  padding: 2px 0px 0px 17px !important;
+  background-position: -281px -108px;
+}
+
+.i-expand {
+  padding: 0px 7px 0px 23px !important;
+  background-position: -71px -109px;
+}
+
+.i-close {
+  padding: 2px 3px 0px 17px !important;
+  background-position: -245px -142px;
+}
+
+.btn {
+  text-decoration: none !important;
+}
+
+.opacity-half {
+  opacity: 0.5;
+}
+
+/* Icon sprites ENDS */
+
+.pr-0 {
+  padding-right: 0px !important;
+}
+
+@media screen and (max-width: 767px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+.display-inline {
+  display: inline !important;
+}
+
+.form-control.ng-dirty.ng-invalid {
+  border: 1px solid red;
+}
+
+.required {
+  color: red;
+}
+
+.ng-valid[required],
+.ng-valid.required {
+  border-left: 5px solid #42a948;
+  /* green */
+}
+
+.ng-invalid:not(form) {
+  border-left: 5px solid #a94442;
+  /* red */
+}
+
+.device-type-mobile .menu-collapsed {
+  width: 60px !important;
+}
+
+.device-type-mobile .menu-collapsed li {
+  padding: 10px 5px 10px 10px !important;
+}
+
+.device-type-mobile .div-right {
+  margin-left: 50px !important;
+}
+
+.device-type-mobile .div-right .col-xs-12 {
+  padding-right: 0 !important;
+}
+
+.device-type-mobile .cache-info {
+  font-size: 0.8rem !important;
+}
+
+.device-type-mobile .custom-list-group a.disabled,
+.device-type-mobile .custom-list-group span.btn-info {
+  display: none !important;
+}

@@ -1,0 +1,114 @@
+<app-loader [isLoading]="isLoading" [showLargeLoader]="false"></app-loader>
+
+<div *ngIf="!isLoading" class="custom-list-group-box">
+  <!-- <a href='#' *ngIf="isAdmin && isEditMode" (click)="add($event)" class="badge badge-primary margin-left-20">Add</a> -->
+  <a
+    href="#"
+    *ngIf="isAdmin && isEditMode && !isReadOnly"
+    (click)="add($event)"
+    aria-disabled="isReadOnly"
+    [ngClass]="{ disabled: isReadOnly }"
+    role="button"
+    [ngClass]="{ disabled: isReadOnly }"
+    class="badge badge-primary margin-left-20"
+    >Add</a
+  >
+
+  <div>
+    <div *ngIf="isListFromCache" class="cache-info">
+      Result is from cache, updated <b>{{ this.cacheDuration | dateDisplay }}</b
+      >.
+      <a href="#" (click)="refreshList($event)">Refresh Now</a>
+    </div>
+
+    <div class="filter-box">
+      <div class="col-lg-12 padding-right-0 margin-bottom-10">
+        <span class="spn-page-title">Todo</span>
+
+        <div
+          ngbDropdown
+          class="d-inline-block sm margin-left-20"
+          placement="bottom-right"
+        >
+          <button
+            class="btn btn-secondary btn-xs selected-project"
+            id="dropdownBasic1"
+            ngbDropdownToggle
+          >
+            {{ selectedValue || "Pending Items" }}
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button (click)="itemSelected(null)" class="dropdown-item">
+              Pending Items
+            </button>
+            <button (click)="itemSelected('All')" class="dropdown-item">
+              All
+            </button>
+          </div>
+        </div>
+
+        <input
+          type="text"
+          class="input-grey float-right"
+          [(ngModel)]="searchText"
+          placeholder="search.."
+        />
+      </div>
+    </div>
+
+    <div *ngIf="todoList.length === 0">
+      <div class="custom-list-group">
+        <span class="text-secondary">No action items pending!!!</span>
+      </div>
+    </div>
+
+    <div
+      class="custom-list-group"
+      *ngFor="let todo of todoList | filter : searchText; let i = index"
+    >
+      <span class="custom-list-group-item todo-spn">{{ todo.title }}</span>
+
+      <a
+        href="#"
+        *ngIf="todo.status === 'OPEN'"
+        (click)="markDone($event, todo)"
+        role="button"
+        aria-disabled="isReadOnly"
+        [ngClass]="{ disabled: isReadOnly }"
+        class="float-right btn btn-xs btn-success margin-left-20"
+        >Mark Done</a
+      >
+
+      <span *ngIf="todo.status === 'CLOSE'" class="float-right margin-left-20">
+        <span class="btn btn-xs btn-info"
+          >Closed {{ todo.closeDate | dateDisplay }}</span
+        >
+        <a
+          href="#"
+          (click)="openAgain($event, todo)"
+          class="float-right btn btn-xs btn-success margin-left-20"
+          role="button"
+          aria-disabled="isReadOnly"
+          [ngClass]="{ disabled: isReadOnly }"
+          >Open Again</a
+        >
+      </span>
+      <span *ngIf="isAdmin && isEditMode">
+        <a
+          href="#"
+          (click)="delete($event, todo)"
+          role="button"
+          aria-disabled="isReadOnly"
+          [ngClass]="{ disabled: isReadOnly }"
+          style="pointer-events: none"
+          class="float-right margin-left-20"
+          ><span class="icons i-trash" title="delete"></span>
+        </a>
+      </span>
+
+      <small class="text-secondary margin-left-20 bold float-right">{{
+        todo.projectName || todo.projectId
+      }}</small>
+    </div>
+  </div>
+</div>

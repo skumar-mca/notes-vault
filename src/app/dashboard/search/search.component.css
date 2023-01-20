@@ -1,0 +1,48 @@
+.width-35 {
+    width: 35px;
+}
+
+.link-title {
+    color: #09135d;
+    font-weight: bold;
+}
+
+.link-url {
+    color: #807c7c;
+}
+
+.text-ellipses {
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.list-group-item1 {
+    padding: .40rem 1.25rem!important;
+}
+
+.fav-icon {
+    margin-left: 10px;
+    float: right;
+    cursor: pointer;
+}
+
+.search-title {
+    font-size: 24px;
+    color: #ea3576;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.quick-notes .custom-list-group {
+    margin-bottom: 10px;
+}
+
+.col-sm-12 {
+    padding-right: 0px!important;
+}
+
+.quick-notes .link-url {
+    margin-top: 10px;
+}

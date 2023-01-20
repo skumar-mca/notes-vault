@@ -1,0 +1,55 @@
+<div class="content-box" id="content-box">
+  <div class="row">
+    <div class="col-sm-12 padding-right-0">
+      <div class="div-left">
+        <app-left-menu linktype="dashboard"></app-left-menu>
+      </div>
+
+      <div class="div-right" id="div-right">
+        <div class="spn-page-title margin-bottom-10">Encode/Decode URL</div>
+
+        <form [formGroup]="encodeForm">
+          <div class="row">
+            <div class="col-lg-5 col-sm-4 mb-2">
+              <input type="text" formControlName="encodeText" class="form-control" (keyup.enter)="encode($event)">
+            </div>
+            <div class="col-lg-2 col-sm-4 text-center mb-2">
+              <a href="#" (click)="encode($event)" class="btn btn-xs btn-primary margin-right-10">Encode</a>
+              <a href="#" (click)="clearEncodeDecode($event)" class="btn btn-xs btn-danger margin-right-10">Clear</a>
+              <a href="#" (click)="decode($event)" class="btn btn-xs btn-secondary">Decode</a>
+            </div>
+            <div class="col-lg-5 col-sm-4 mb-2">
+              <input type="text" formControlName="decodeText" class="form-control" (keyup.enter)="decode($event)">
+            </div>
+          </div>
+        </form>
+
+        <!-- <br />
+        <hr>
+        <div class="spn-page-title margin-bottom-10">Decrypt Content</div>
+
+
+        <div class="row">
+          <div class="col-sm-6">
+            <textarea class="form-control content-text" (change)="decrypt(encryptedText.value, secret.value)"
+              (blur)="decrypt(encryptedText.value, secret.value)" rows="5" #encryptedText></textarea>
+          </div>
+
+          <div class="col-sm-6">
+            <textarea class="form-control content-text" rows="5" [value]="decrpytedText | json"></textarea>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-sm-1"><b>Secret: </b></div>
+          <div class="col-sm-11">
+            <input type="text" #secret (change)="decrypt(encryptedText.value, secret.value)"
+              (blur)="decrypt(encryptedText.value, secret.value)" class="form-control" value="#a-z0-9232##afx@">
+          </div>
+        </div> -->
+
+
+      </div>
+    </div>
+  </div>
+</div>

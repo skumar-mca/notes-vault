@@ -1,0 +1,84 @@
+.ul-distinct {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.ul-distinct li{
+    display: inline;
+}
+
+.ul-distinct li a{
+    padding: 3px 10px 3px 10px;
+    background-color: #f3f1f1;
+    margin-right: 5px;
+    text-decoration: none;
+}
+
+.ul-distinct li a:hover{
+    text-decoration: none;
+}
+
+.selected-lang {
+    background-color: #0f3c7c96!important;
+    color:white;
+}
+
+.custom-list-group-item{
+    font-weight: normal!important;
+    color: #3a5da0!important;
+}
+
+.custom-list-group{
+    padding: 3px 5px 3px 5px!important;   
+    font-size: 14px;
+}
+
+:host ::ng-deep code {
+    padding: .2em .45em;
+    margin: 0;
+    background-color: rgba(0,0,0,.06);
+    border-radius: 3px;
+    white-space: nowrap;
+}
+
+:host ::ng-deep h2{
+    font-size: 16px!important;
+    font-weight: 400!important;
+}
+
+:host ::ng-deep pre {
+    padding: 10px;
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    line-height: 18px;
+    overflow: auto;
+}
+
+.selected-rule{
+    background-color: #fdfbb4;
+    font-weight: bold;
+}
+
+.space-left {
+    margin-left: 25px;
+    margin-right: -25px;
+}
+
+.div-tag {
+    display: inline;
+    border: 1px solid #e0e0e0;
+    font-size: 11px;
+    padding: 1px 4px 1px 4px;
+    background-color: #f9f9f9;
+    margin-right: 5px;
+}
+
+.tags{
+    margin-top: 25px;
+    text-align: right;
+}
+
+.tag-list {
+    background-color: #fcffc6!important;
+    float: left;
+}

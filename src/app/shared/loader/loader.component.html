@@ -1,0 +1,6 @@
+<div class="row loader-container" *ngIf="isLoading">
+  <div class="col-sm-12">
+      <img *ngIf="showLargeLoader" src="assets/images/loader.gif" class="loader">
+    <img *ngIf="!showLargeLoader" src="assets/images/loader-mini.gif" class="loader-mini">
+  </div>
+</div>

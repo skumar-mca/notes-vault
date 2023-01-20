@@ -1,0 +1,145 @@
+<div class="todo-header" id="app-header">
+  <span class="float-left" style="display: none">
+    <div ngbDropdown class="d-inline-block sm">
+      <button
+        class="btn btn-secondary btn-sm selected-project"
+        id="dropdownBasic1"
+        ngbDropdownToggle
+      >
+        {{ selectedProject }}
+      </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button (click)="onProjectSelection(null)" class="dropdown-item">
+          All projects
+        </button>
+        <button
+          *ngFor="let proj of projectList; let i = index"
+          (click)="onProjectSelection(proj)"
+          class="dropdown-item"
+        >
+          {{ proj.name }}
+        </button>
+      </div>
+    </div>
+  </span>
+
+  <ul class="todo-ul-menu pl-0">
+    <li class="float-right">
+      <input
+        type="text"
+        class="txt-search-all"
+        #searchText
+        (keydown.enter)="search($event, searchText.value)"
+        placeholder="search"
+      />
+      <span *ngIf="userProfile.token">
+        <span class="guest-name"></span>
+        <!-- <a href='#' class="guest-name" (click)='doNothing($event)'>{{userProfile.name || 'Guest'}}</a> -->
+        <!-- <a
+          href="https://sunilkumar-profile.web.app/profile"
+          class="d-none d-sm-inline d-lg-inline guest-name"
+          (click)="doNothing($event)"
+          >{{ userProfile.name || "Guest" }}</a
+        > -->
+        <!-- <a
+          href="https://sunilkumar-profile.web.app/profile"
+          class="d-lg-none d-sm-none d-xs-inline guest-name initial-name"
+          title="{{ userProfile.name }}"
+          (click)="doNothing($event)"
+          >{{ getInitialsForName(userProfile.name || "Guest") }}</a
+        > -->
+
+        <!-- <a href='#' class="d-none d-sm-inline d-lg-inline" (click)='logOut($event)'>Logout</a> -->
+        <!-- <a
+          href="#"
+          class="d-lg-none d-sm-none d-xs-inline"
+          (click)="logOut($event)"
+          ><img src="assets/images/logout.jpg" class="qr-icon"
+        /></a> -->
+      </span>
+
+      <span *ngIf="!userProfile.token">
+        <a routerLink="/admin/login" routerLinkActive="todo-active-link"
+          >Login</a
+        >
+        <a routerLink="/register" routerLinkActive="todo-active-link"
+          >Register</a
+        >
+
+        <!-- <a routerLink="/admin/register" routerLinkActive="todo-active-link">Register</a> -->
+      </span>
+    </li>
+
+    <div
+      ngbDropdown
+      class="d-lg-none d-sm-none d-xs-block"
+      style="width: 150px"
+    >
+      <button
+        class="btn btn-secondary btn-sm selected-project"
+        id="dropdownBasic1"
+        ngbDropdownToggle
+      >
+        Action
+      </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button (click)="onNavigateTo('/dashboard')" class="dropdown-item">
+          Home
+        </button>
+        <!-- <button
+          *ngIf="userProfile.isSuperAdmin"
+          (click)="onNavigateTo('/admin')"
+          class="dropdown-item"
+        >
+          Admin
+        </button>
+        <button
+          *ngIf="userProfile.isAdmin"
+          (click)="toggleEditMode($event)"
+          class="dropdown-item"
+        >
+          {{ isEditModeEnabled ? "Disable" : "Enable" }} Editing
+        </button>
+        <button
+          (click)="onNavigateTo('/dashboard/encode-decode')"
+          class="dropdown-item"
+        >
+          Encode/Decode
+        </button> -->
+      </div>
+      <a routerLink="/qr-view" class="pl-3" routerLinkActive="todo-active-link"
+        ><img src="assets/images/qr.png" class="qr-icon"
+      /></a>
+    </div>
+
+    <li class="float-left d-none d-sm-block">
+      <a
+        routerLink="/dashboard"
+        class="pl-3"
+        routerLinkActive="todo-active-link"
+        >Home</a
+      >
+      <a
+        *ngIf="userProfile.isSuperAdmin"
+        routerLink="/admin"
+        routerLinkActive="todo-active-link"
+        >Admin</a
+      >
+      <a
+        *ngIf="userProfile.isAdmin"
+        class="toggle-edit"
+        href="#"
+        (click)="toggleEditMode($event)"
+        >{{ isEditModeEnabled ? "Disable" : "Enable" }} Editing</a
+      >
+      <!-- <a
+        routerLink="/dashboard/encode-decode"
+        routerLinkActive="todo-active-link"
+        >Encode/Decode URL</a
+      > -->
+      <a routerLink="/qr-view" class="pl-3" routerLinkActive="todo-active-link"
+        ><img src="assets/images/qr.png" class="qr-icon"
+      /></a>
+    </li>
+  </ul>
+</div>

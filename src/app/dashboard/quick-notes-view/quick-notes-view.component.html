@@ -1,0 +1,110 @@
+<div class="content-box" id="content-box">
+  <div class="row">
+    <div class="col-sm-12 pr-0">
+      <div class="div-left">
+        <app-left-menu linktype="dashboard"></app-left-menu>
+      </div>
+      <div class="div-right" id="div-right">
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div *ngIf="isListFromCache" class="cache-info">Notes list (on left) is from cache updated
+              <b>{{this.cacheDuration | dateDisplay}}</b>.
+              <a href="#" (click)="refreshList($event)">Refresh Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div
+            [ngClass]="quickNotesList.length > 0 || showEditor ? 'col-lg-3 col-sm-12 col-xs-12' : 'col-lg-12 col-sm-12 col-xs-12'"
+            class="padding-right-0">
+            <app-loader [isLoading]="isLoading" [showLargeLoader]="true"></app-loader>
+            <div *ngIf="!isLoading">
+
+              <div class="filter-box">
+                <div class="col-lg-12 padding-right-0 margin-bottom-10">
+                  <span class="spn-page-title">Quick Notes</span>
+                  <a href='#' *ngIf="isAdmin && isEditMode" (click)="add($event)"
+                    class="badge badge-primary margin-left-20">Add</a>
+
+                  <input type="text" class="input-grey float-right" [(ngModel)]="searchText" placeholder="search..">
+                </div>
+              </div>
+
+              <div *ngIf="quickNotesList.length>0">
+                <div class="custom-list-group"
+                  [ngClass]="selectedNote && selectedNote._id===note._id ? 'custom-list-group-active' : ''"
+                  *ngFor="let note of quickNotesList |  filter : searchText; let i=index;">
+                  <div class="custom-list-group-item text-ellipses cursor-pointer" (click)="getDetails(note)"
+                    title="{{note.title}}">
+                    <div *ngIf="note.isEncrypt" class="icons i-lock opacity-half margin-right-10"
+                      title="content is encrypted" style="height: 50px;width: 50px"></div>
+
+                    {{note.title}}
+                  </div>
+
+                  <!-- <app-copy-to-clipboard *ngIf="note.description" [text]="note.description"></app-copy-to-clipboard> -->
+
+                  <div class="text-ellipses">
+
+                    <div class="div-inline">
+                      <small *ngIf="noProjectSelected"
+                        class="text-secondary bold margin-right-10">{{note.projectName || note.projectId}}</small>
+                    </div>
+
+                    <div class="div-inline float-right">
+                      <!-- <ng-template #popContent>
+                        <small *ngIf="note.updateDate"><b>Updated</b> {{note.updateDate  | dateDisplay}}<br /></small>
+                        <small><b>Created</b> {{note.createDate | dateDisplay}}</small>
+                      </ng-template>
+                      <a href="#" (click)="noop($event)" placement="right" class="margin-right-10"
+                        [ngbPopover]="popContent" triggers="mouseenter:mouseleave" container="body">
+                        <img src="assets/images/icons/info.png" class="action-icon">
+                      </a> -->
+                      <span class="fav-icon cursor-pointer margin-right-10">
+                        <div *ngIf="!note.isFav" (click)="saveInRecentList(note, true)" class="icons i-fav"
+                          title="set as favourite" style="height: 50px;width: 50px"></div>
+                        <div *ngIf="note.isFav" (click)="saveInRecentList(note, false)" class="icons i-fav-sel"
+                          title="remove from favourite" style="height: 50px;width: 50px"></div>
+                      </span>
+
+
+
+                      <span *ngIf="isAdmin && isEditMode">
+                        <a href='#' (click)="edit($event, note)" title="edit note">
+                          <img src="assets/images/icons/pencil.png" class="action-icon">
+                        </a>
+                        <a href='#' (click)="delete($event, note)" class="margin-left-20" title="delete note">
+                          <img src="assets/images/icons/trash.png" class="action-icon">
+                        </a>
+                      </span>
+                    </div>
+                    <!-- <app-loader [isLoading]="note.isLoading" [showLargeLoader]="false"></app-loader> -->
+                  </div>
+
+                  <!-- <div *ngIf="note.description && !note.isLoading" class="link-url text-ellipses"
+              [innerHtml]="note.description">
+            </div> -->
+                </div>
+              </div>
+
+              <div *ngIf="quickNotesList.length===0">
+                <div class="custom-list-group">
+                  <span class="text-secondary">No quick notes found!</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+          <div *ngIf="quickNotesList.length > 0 || showEditor" class="col-lg-9 col-sm-12 padding-right-0">
+            <div class="div-editor-separator">
+              <app-quick-notes-form #quickNotesForm (onItemSave)="onItemSave($event)"></app-quick-notes-form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

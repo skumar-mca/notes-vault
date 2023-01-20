@@ -1,0 +1,7 @@
+<span class="margin-left-20 cursor-pointer" (click)='copy()' title="copy to clipboard">
+  <img src="assets/images/icons/copy.png" class="action-icon">
+</span>
+
+<div *ngIf="showCopyConfirmation" class="alert alert-success copy-confirmation">
+  Copied to clipboard
+</div>

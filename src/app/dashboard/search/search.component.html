@@ -1,0 +1,86 @@
+<div class="content-box" id="content-box">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="div-left">
+        <app-left-menu linktype="dashboard"></app-left-menu>
+      </div>
+      <div class="div-right" id="div-right">
+
+        <div class="search-title">Search result for term: <b>{{this.term}}</b></div>
+
+        <div *ngIf="linksList.length>0">
+          <div class="row">
+            <div class="col-sm-12">
+              <span class="spn-page-title">Bookmarks</span>
+
+              <div class="custom-list-group" *ngFor="let link of linksList; let i=index;">
+                <a class="custom-list-group-item" href="{{link.url}}" target="_blank"
+                  title="click to open in new tab">{{link.title}}</a>
+                <app-copy-to-clipboard [text]="link.url"></app-copy-to-clipboard>
+
+                <small
+                  class="text-secondary margin-left-20 bold float-right">{{link.projectName || link.projectId}}</small>
+
+                <div class="link-url text-ellipses"><small>{{link.url}}</small></div>
+              </div>
+            </div>
+          </div>
+          <br />
+          <br />
+        </div>
+
+        <div class="quick-notes" *ngIf="quickNotesList.length>0">
+          <div class="row">
+            <div class="col-sm-12">
+              <span class="spn-page-title">Quick Notes</span>
+
+              <div class="custom-list-group" *ngFor="let note of quickNotesList; let i=index;">
+                <div class="custom-list-group-item text-ellipses cursor-pointer" title="{{note.title}}">
+                  <div *ngIf="note.isEncrypt" class="icons i-lock opacity-half margin-right-10"
+                    title="content is encrypted" style="height: 50px;width: 50px"></div>
+                  {{note.title}}
+                </div>
+
+                <div class="text-ellipses">
+                  <div class="div-inline">
+                    <small class="text-secondary bold margin-right-10">{{note.projectName || note.projectId}}</small>
+                  </div>
+
+                  <div class="div-inline float-right">
+                    <ng-template #popContent>
+                      <small *ngIf="note.updateDate"><b>Updated</b> {{note.updateDate  | dateDisplay}}<br /></small>
+                      <small><b>Created</b> {{note.createDate | dateDisplay}}</small>
+                    </ng-template>
+                    <a href="#" (click)="noop($event)" placement="top" class="margin-right-10" [ngbPopover]="popContent"
+                      triggers="mouseenter:mouseleave" container="body">
+                      <img src="assets/images/icons/info.png" class="action-icon">
+                    </a>
+
+                  </div>
+                </div>
+
+                <div *ngIf="note.description" class="link-url text-ellipses" [innerHtml]="note.description">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+
+        <div *ngIf="learningList.length>0">
+          <span class="spn-page-title">Knowledge Base/Learnings</span>
+          <div class="custom-list-group margin-bottom-10" *ngFor="let note of learningList;">
+            <div class="content-heading">{{note.title}}
+              <span class="float-right">{{note.category === 1 ? 'Knowledge Base' : 'Learning'}}</span>
+            </div>
+            <div class="link-content" [innerHtml]="note.content">
+            </div>
+          </div>
+        </div>
+
+        <app-loader [isLoading]="isLoading" [showLargeLoader]="true"></app-loader>
+      </div>
+    </div>
+  </div>
+</div>

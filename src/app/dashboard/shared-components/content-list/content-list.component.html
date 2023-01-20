@@ -1,0 +1,117 @@
+<div class="content-box" id="content-box">
+  <div class="row">
+    <div class="col-sm-12 pr-0">
+      <div class="div-left">
+        <app-left-menu linktype="dashboard"></app-left-menu>
+      </div>
+
+      <div class="div-right" id="div-right">
+        <div class="row">
+          <div class="col-sm-12 pr-0">
+            <div *ngIf="isListFromCache" class="cache-info">
+              Result is from cache, updated
+              <b>{{ this.cacheDuration | dateDisplay }}</b
+              >.
+              <a href="#" (click)="refreshList($event)">Refresh Now</a>
+            </div>
+          </div>
+        </div>
+
+        <app-loader
+          [isLoading]="isLoading"
+          [showLargeLoader]="true"
+        ></app-loader>
+        <div *ngIf="!isLoading" class="row">
+          <div class="col-sm-12 pr-0">
+            <div class="filter-box">
+              <div class="margin-bottom-10">
+                <span class="spn-page-title">{{ category.title }}</span>
+                <!-- <a *ngIf="isAdmin && isEditMode" href='#' (click)="add($event)"
+                  class="badge badge-primary margin-left-20">Add</a> -->
+
+                <a
+                  href="#"
+                  class="btn btn-secondary btn-xs disabled margin-left-20"
+                  role="button"
+                  aria-disabled="true"
+                  >Add</a
+                >
+
+                <input
+                  type="text"
+                  class="input-grey float-right margin-bottom-10"
+                  [(ngModel)]="searchText"
+                  placeholder="search.."
+                />
+              </div>
+            </div>
+
+            <div *ngIf="itemList.length === 0">
+              <div class="custom-list-group">
+                <span class="text-secondary"
+                  >No {{ category.title }} found!</span
+                >
+              </div>
+            </div>
+
+            <div
+              class="custom-list-group"
+              [ngClass]="
+                selectedItem && selectedItem._id === note._id ? '' : ''
+              "
+              *ngFor="let note of itemList | filter : searchText; let i = index"
+            >
+              <div
+                class="custom-list-group-item cursor-pointer display-inline"
+                (click)="getDetails(note)"
+              >
+                {{ note.title }}
+              </div>
+              <div class="display-inline">
+                <app-copy-to-clipboard
+                  *ngIf="note.content"
+                  [text]="note.content"
+                ></app-copy-to-clipboard>
+                <!-- <span *ngIf="isAdmin && isEditMode"> -->
+                <span>
+                  <a
+                    href="#"
+                    role="button"
+                    aria-disabled="true"
+                    style="margin-top: -3px"
+                    class="btn disabled btn-clear p-0 float-right margin-left-20"
+                    (click)="edit($event, note)"
+                    ><img
+                      src="assets/images/icons/pencil.png"
+                      class="action-icon"
+                  /></a>
+                  <a
+                    href="#"
+                    class="float-right btn disabled p-0"
+                    role="button"
+                    aria-disabled="true"
+                    (click)="delete($event, note)"
+                    ><span class="icons i-trash" title="delete"></span
+                  ></a>
+                </span>
+              </div>
+
+              <div>
+                <app-loader
+                  [isLoading]="note?.isLoading"
+                  [showLargeLoader]="false"
+                ></app-loader>
+                <!-- <div class="content-heading">{{selectedItem.title}}</div> -->
+                <div
+                  *ngIf="!note.collapsed && note.content"
+                  class="link-content"
+                  [innerHtml]="note.content"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-lg-5 col-sm-8 col-xs-12 alert alert-info login-form">
+    <form [formGroup]="loginForm">
+      <div class="row">
+        <div class="col-sm-4 field-label">Username</div>
+        <div class="col-sm-8"><input type="text" formControlName="username" class="form-control" required /></div>
+      </div>
+
+      <br />
+      <div class="row">
+        <div class="col-sm-4 field-label">Password</div>
+        <div class="col-sm-8"><input type="password" formControlName="password" class="form-control" required /></div>
+      </div>
+
+      <br />
+      <div class="row">
+        <div class="col-sm-12">
+          <app-loader [isLoading]="isLoading"></app-loader>
+          <button type="submit" class="btn btn-block btn-primary" (click)="loginForm.valid && login()">Login</button>
+          <div class="margin-top-10" [ngClass]="error.success ? 'text-success' : 'text-danger'">{{error.message}}</div>
+        </div>
+      </div>
+
+      <!-- <div class="row">
+        <div class="col-sm-12">
+          <hr>
+          <div class="text-divider">OR</div>
+          <button type="submit" class="btn btn-block btn-info" (click)="navigateToDashboard()">Login as Guest</button>
+          <div class="margin-top-10" class="text-muted text-center"><small>No username/password required</small></div>
+        </div>
+      </div> -->
+
+    </form>
+  </div>
+
+</div>

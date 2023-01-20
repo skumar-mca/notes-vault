@@ -1,0 +1,95 @@
+.txt-description {
+    width: 100%;
+    min-height: 150px;
+    font-size: 12px;
+}
+
+.width-98 {
+    max-width: 98%;
+}
+
+#editorContent {
+    overflow: auto;
+    word-break: break-all;
+    background-color: white;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.hint-text {
+    color: #28a745
+}
+
+.is-encrypt {
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.spn-desc-title {
+    font-size: 1em;
+    color: #e25820;
+    margin-top: -3px;
+    display: inline-block;
+}
+
+.is-encrypt input {
+    margin-right: 5px;
+}
+
+.decrypt-box {
+    padding: 10px;
+    display: inline-block;
+}
+
+.decrypt-header {
+    margin-bottom: 10px;
+}
+
+.decrypt-header span {
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.decrypt-text {
+    height: 20px;
+    border: 1px solid #e4e2e2;
+    padding: 3px;
+    width: 96px;
+    font-size: 13px;
+    margin-right: 5px;
+    border-radius: 3px;
+    letter-spacing: -5px;
+}
+
+.decrypt-text:focus {
+    outline: none;
+}
+
+::ng-deep .angular-editor-textarea {
+    background-color: white!important;
+}
+
+.editor-full-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: white;
+    width: 100%;
+    padding: 10px;
+}
+
+.a-toggle-fullscreen, .a-toggle-fullscreen:hover {
+    text-decoration: none;
+    opacity: 0.5;
+    margin-top: 3px;
+}
+
+::ng-deep #angularEditor>angular-editor-toolbar>div>div:nth-child(1), ::ng-deep #angularEditor>angular-editor-toolbar>div>div:nth-child(2), ::ng-deep #angularEditor>angular-editor-toolbar>div>div:nth-child(4), ::ng-deep #angularEditor>angular-editor-toolbar>div>div:nth-child(6), ::ng-deep #angularEditor>angular-editor-toolbar>div>div:nth-child(7), ::ng-deep #bold-txt-quicknote-description, ::ng-deep #italic-txt-quicknote-description, ::ng-deep #underline-txt-quicknote-description, ::ng-deep #strikeThrough-txt-quicknote-description, ::ng-deep #subscript-txt-quicknote-description, ::ng-deep #superscript-txt-quicknote-description, ::ng-deep #indent-txt-quicknote-description, ::ng-deep #outdent-txt-quicknote-description, ::ng-deep #heading-txt-quicknote-description, ::ng-deep #fontSelector-txt-quicknote-description, ::ng-deep #toggleEditorMode-txt-quicknote-description, ::ng-deep .angular-editor-button[title='Insert Image'], ::ng-deep .angular-editor-button[title='Clear Formatting'], ::ng-deep .angular-editor-button[title='Undo'], ::ng-deep .angular-editor-button[title='Redo'], ::ng-deep .angular-editor-button[title='Unlink'] {
+    display: none;
+}

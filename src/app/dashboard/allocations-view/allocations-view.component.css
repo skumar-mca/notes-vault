@@ -1,0 +1,34 @@
+.duration-option {
+    width: 25px;
+    font-size: 0.8rem;
+    border: 1px solid #e0dcdc;
+    border-radius: 4px;
+    padding: 0px 0px 0px 5px;
+    color: #e26c18;
+    margin-right: 5px;
+    margin-left: 2px;
+}
+
+.max-capacity {
+    margin-top: 20px;
+}
+
+.time-sep {
+    color: #e25c28;
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.txtarea-notes{
+    border: transparent;
+    resize: none;
+    width: 100%;
+    overflow: auto;
+    background-color: transparent;
+}
+
+.div-notes {
+    border-top: 1px solid #ff623d;
+    margin-top: 10px;
+}

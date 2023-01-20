@@ -1,0 +1,6 @@
+<div class="width-100">
+  <input class="form-control " id="typeahead-focus" type="text" [ngbTypeahead]="search"
+    (focus)="focus$.next($event.target.value)" (click)="click$.next($event.target.value)" [resultFormatter]="formatter"
+    [inputFormatter]="formatter" (selectItem)="itemSelected($event)" #instance="ngbTypeahead" [required]="isRequired"
+    [value]="selectedValue || ''" />
+</div>

@@ -1,0 +1,110 @@
+<div class="content-box" id="content-box">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="div-left">
+        <app-left-menu></app-left-menu>
+      </div>
+      <div class="div-right" id="div-right">
+        <div class="row">
+          <div class="col-lg-5 col-sm-3">
+            <app-loader [isLoading]="isLoading" [showLargeLoader]="true"></app-loader>
+            <div *ngIf="!isLoading">
+              <h3>Links</h3>
+
+              <table class="table table-sm table-bordered table-white">
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Username</th>
+                  <th>Type</th>
+                  <th class="th-action">Actions</th>
+                  <!-- <th>Del</th> -->
+                </tr>
+
+                <tr *ngFor="let user of usersList; let i=index;">
+                  <td>{{i+1}}</td>
+                  <td>{{user.name}}</td>
+                  <td>{{user.username}}</td>
+                  <td>{{user.role ==='superAdmin' ? 'Super Admin' : 'User' }}</td>
+
+                  <td class="text-center">
+                    <app-action-button [obj]="user" (onEdit)="edit($event)" (onDelete)="delete($event)" caption="user">
+                    </app-action-button>
+                  </td>
+                </tr>
+
+                <tr *ngIf="usersList.length===0">
+                  <td colspan="6">No records found.</td>
+                </tr>
+              </table>
+              <button class="btn btn-sm btn-primary" (click)="addUser()">Add</button>
+            </div>
+          </div>
+
+          <div class="col-lg-5 col-sm-6 alert alert-info login-form">
+            <form [formGroup]="form">
+              <div class="row">
+                <div class="col-sm-4 field-label field-divider">Name</div>
+                <div class="col-sm-8"><input formControlName="name" class="form-control" required /></div>
+              </div>
+
+              <div class="row" *ngIf="!isEdit">
+                <div class="col-sm-4 field-label field-divider">Username</div>
+                <div class="col-sm-8"><input formControlName="username" class="form-control" required /></div>
+              </div>
+
+              <div class="row" *ngIf="!isEdit">
+                <div class="col-sm-4 field-label field-divider">Password</div>
+                <div class="col-sm-8"><input formControlName="password" class="form-control" required /></div>
+              </div>
+
+              <div class="row" *ngIf="!isEdit">
+                <div class="col-sm-4 field-label field-divider">Secret
+                </div>
+                <div class="col-sm-8">
+                  <input formControlName="secret" class="form-control" maxlength="6" required />
+                  <span class="text-muted"><small>Used for encrypting/decrypting sensitive data. Can't be changed once
+                      created. </small></span>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4 field-label field-divider">isAdmin</div>
+                <div class="col-sm-8">
+                  <select formControlName="isAdmin" class="form-control" required>
+                    <option value="false">User</option>
+                    <option value="true">Admin</option>
+                  </select>
+                </div>
+              </div>
+
+              <br />
+              <div class="row">
+                <div class="col-sm-12">
+                  <app-loader [isLoading]="isLoading"></app-loader>
+
+                  <div *ngIf="isEdit">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <button type="submit" class="btn btn-block btn-primary" (click)="updateUser()">Update</button>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <button type="submit" class="btn btn-block btn-secondary" (click)="cancelEdit()">Cancel</button>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <button *ngIf="!isEdit" type="submit" class="btn btn-block btn-primary"
+                    (click)="form.valid && register()">Register</button>
+                  <span class="text-danger">{{errorMessage}}</span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,167 @@
+<form [formGroup]="crudService.currentForm" [ngClass]="isEditorFullScreen ? 'editor-full-screen' : ''">
+  <div *ngIf="isEditMode">
+    <div class="row">
+      <div class="col-sm-10 padding-right-0">
+        <div class="field-label">Title
+          <a href="#" title="Toggle Full Screen" class="a-toggle-fullscreen opacity-half"
+            (click)="toggleFullScreenMode($event)">
+            <div class="icons i-expand" style="height: 50px;width: 50px"></div>
+          </a>
+
+        </div>
+        <input formControlName="title" autofocus #noteTitle class="form-control width-98" required />
+      </div>
+
+      <div class="col-sm-2 padding-right-0">
+        <div class="field-label">Project</div>
+        <input formControlName="projectId" class="form-control" style="display:none;" />
+        <app-project-list placement="bottom-right" (onItemSelected)="onItemSelected($event)" isRequired="true"
+          [selectedValue]="selectedprojectName">
+        </app-project-list>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 padding-right-0 field-label">Description
+        <div class="is-encrypt">
+          <input type="checkbox" formControlName="isEncrypt" id="isEncrypt"><label for="isEncrypt"
+            class="cursor-pointer">
+            Encrypted</label>
+        </div>
+      </div>
+      <div class="col-sm-12 padding-right-0">
+        <angular-editor formControlName="description" [config]="editorConfig" id="txt-quicknote-description"
+          class="txt-description"></angular-editor>
+        <!-- <textarea formControlName="description" (keyup)='changed($event)' id="txt-quicknote-description"
+        class="txt-description" [attr.disabled]="isAdmin ? null : true"></textarea> -->
+      </div>
+
+      <div class="col-sm-12 padding-right-0">
+
+        <button type="submit" class="btn btn-xs btn-primary margin-top-5 margin-right-10"
+          [disabled]="!crudService.currentForm.valid" (click)="crudService.currentForm.valid && save(true)">Save &
+          Close</button>
+
+        <button type="submit" class="btn btn-xs btn-info margin-top-5 margin-right-10"
+          [disabled]="!crudService.currentForm.valid" (click)="crudService.currentForm.valid && save()">Save</button>
+
+
+        <button type="button" class="btn btn-xs btn-secondary margin-top-5" (click)="cancel()">Cancel</button>
+
+        <app-loader [isLoading]="crudService.isLoading" class="margin-left-20"></app-loader>
+        <app-crud-message-display [message]="crudService.message"></app-crud-message-display>
+
+        <span *ngIf="selectedNote" class="float-right hint-text"><small>Saved
+            {{(selectedNote.updateDate || selectedNote.createDate)  | dateDisplay : triggerUpdatePipeValue}}</small></span>
+      </div>
+    </div>
+    <br>
+  </div>
+
+  <div class="readonly-content" *ngIf="!isEditMode">
+    <div class="row">
+      <div class="col-sm-12 padding-right-0">
+        <div class="">
+          <a href="#" title="Toggle Full Screen" class="a-toggle-fullscreen float-right opacity-half"
+            (click)="toggleFullScreenMode($event)">
+            <div class="icons i-expand" style="height: 50px;width: 50px"></div>
+          </a>
+
+          <div class="spn-desc-title"> {{title.value}}</div>
+
+          <span *ngIf="isEncrypt.value===true">
+            <button class="btn btn-xs btn-link cursor-pointer float-right" (click)="showDecrytBox()"
+              *ngIf="!isDescriptionDecrypted">
+              <div class="icons i-lock-open" title="decrypt text" style="height: 50px;width: 50px"></div>
+            </button>
+
+            <button class="btn btn-xs btn-link cursor-pointer float-right" *ngIf="isDescriptionDecrypted"
+              (click)="encryptAgain()">
+              <div class="icons i-lock" title="encrypt again" style="height: 50px;width: 50px"></div>
+            </button>
+          </span>
+
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 padding-right-0">
+        <div id="editorContent"
+          [innerHTML]='isEncrypt.value ===true && !isDescriptionDecrypted ? (description.value || "").substr(0,200) : description.value'>
+        </div>
+      </div>
+
+      <div class="col-sm-12 padding-right-0">
+        <app-loader [isLoading]="crudService.isLoading" class="margin-left-20"></app-loader>
+        <app-crud-message-display [message]="crudService.message"></app-crud-message-display>
+        <span *ngIf="selectedNote" class="float-right hint-text"><small>Saved
+            {{(selectedNote.updateDate || selectedNote.createDate)  | dateDisplay : triggerUpdatePipeValue}}</small></span>
+        <span class="text-muted"><small><b>{{selectedprojectName}}</b></small></span>
+
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <ng-template #decrytBox>
+    <div class="decrypt-box">
+
+      <div class="decrypt-header">
+        <div class="icons i-lock-open cursor-pointer" title="decrypt text" style="height: 50px;width: 50px"></div>
+        <span>Decrypt Content</span>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12 padding-right-0 field-label">Enter Secret
+          <input type="text" #encryptedSecret autocomplete="false" class="decrypt-text" #secret
+            (keydown.enter)="decyptMessage($event, secret.value)">
+        </div>
+        <div class="col-sm-12 padding-right-0">
+          <br />
+          <button class="btn btn-xs btn-primary margin-right-10"
+            (click)="decyptMessage($event, secret.value)">Decrypt</button>
+          <button class="btn btn-xs btn-secondary" (click)="modalRef.close()">Cancel</button>
+          <span class="margin-left-20 text-danger" *ngIf="isDecryptionError"><small>Error decrypting
+              text.</small></span>
+
+        </div>
+      </div>
+
+    </div>
+
+
+  </ng-template>
+
+</form>
+
+
+
+
+<!-- <div class="decrypt-box" *ngIf="isEncryptionRequired">
+
+  <button class="btn btn-xs btn-link" *ngIf="!isDescriptionDecrypted" (click)="toggleDecryption()">
+    <div class="icons i-lock-open cursor-pointer" title="decrypt text" style="height: 50px;width: 50px"></div>
+  </button>
+
+  <span *ngIf="!isDescriptionDecrypted">
+
+    <input type="password" #encryptedSecret *ngIf="isDecryptionEnable" autocomplete="false" class="decrypt-text" #secret
+      placeholder="enter secret" (keydown.enter)="decyptMessage($event, secret.value)">
+
+    <div *ngIf="isDecryptionEnable" class="icons i-close cursor-pointer" (click)="toggleDecryption()"
+      title="cancel decryption" style="height: 50px;width: 50px"></div>
+
+    <span class="margin-left-20 text-danger" *ngIf="isDecryptionError"><small>Error decrypting
+        text.</small></span>
+  </span>
+
+  <button class="btn btn-xs btn-link" *ngIf="isDescriptionDecrypted" title="Encrypt again" (click)="encryptAgain()">
+    <div *ngIf="isDecryptionEnable" class="icons i-lock cursor-pointer" style="height: 50px;width: 50px"></div>
+    <small class="text-muted margin-left-20">Encrypt Again</small>
+  </button>
+</div> -->

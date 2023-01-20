@@ -1,0 +1,18 @@
+.todo-footer {
+    background: linear-gradient(to left,#0143a3,#847e8a);
+    padding: 3px;
+    color: white;
+    font-size: 14px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+    margin-top: 50px;
+    z-index: 9;
+}
+
+.dev-by {
+    color: white!important;
+    text-decoration: underline!important;
+    padding-right: 10px;
+}

@@ -1,0 +1,22 @@
+.link-content {
+    margin-top: 10px;
+}
+
+.filter-box{
+    margin-bottom: 10px;
+}
+
+.space-left {
+    margin-left: 25px;
+    margin-right: -25px;
+}
+
+.divider {
+    border-right: 1px solid #61d0f1;
+    min-height: 80vh;
+}
+
+:host ::ng-deep .link-content {
+    font-size: 13px;
+
+}

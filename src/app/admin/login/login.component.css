@@ -1,0 +1,18 @@
+.login-form {
+    margin: auto;
+    margin-top: 35px;
+    max-width: 400px;
+    padding-right: 0px;
+}
+
+.login-form form {
+    padding: 20px;
+}
+
+.text-divider{
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    color :#a2a0a2;
+    margin-bottom: 20px;
+}

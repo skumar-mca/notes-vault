@@ -1,0 +1,25 @@
+<!-- <div class="left-menu" id="left-menu">
+  <ul>
+    <li *ngFor="let link of links;" [class]="link.url===URL ? 'menu-active' : ''">
+      <a [routerLink]="link.url">{{link.title}}</a>
+    </li>
+  </ul>
+</div> -->
+
+<div class="left-menu" id="left-menu" [ngClass]="{ 'menu-collapsed' : isMenuCollapsed}">
+  <ul>
+    <li *ngFor="let link of links;" [class]="link.url===URL ? 'menu-active' : ''" title="{{ isMenuCollapsed ? link.title : ''}}">
+      <a [routerLink]="link.url">
+        <img *ngIf="link.image" src="{{link.image}}" class="link-image">
+        <span class="link-label">{{link.title}}</span>
+      </a>
+    </li>
+
+    <li class="not-item">
+      <a href="#" (click)="toggleMenuSize($event)" title="{{isMenuCollapsed ? 'expand' : 'collapse' }} menu"
+        class="text-right">
+        <img src="assets/images/right-arrow.png" class="link-image" [ngClass]="{'arrow-left' : !isMenuCollapsed }">
+      </a>
+    </li>
+  </ul>
+</div>

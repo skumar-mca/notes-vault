@@ -1,0 +1,37 @@
+<form [formGroup]="crudService.currentForm">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{crudService.modalTitle}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="crudService.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-sm-4 field-label field-divider">Title</div>
+      <div class="col-sm-8"><input formControlName="title" class="form-control" required /></div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-4 field-label field-divider">Url</div>
+      <div class="col-sm-8"><input formControlName="url" class="form-control" required /></div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-4 field-label field-divider">Project</div>
+      <div class="col-sm-8">
+        <input formControlName="projectId" class="form-control" required style="display:none;" />
+
+        <app-project-list placement="bottom-right" [disable]="false" (onItemSelected)="onItemSelected($event)"
+          isRequired="true" [selectedValue]="selectedprojectName">
+        </app-project-list>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <app-crud-message-display [message]="crudService.message"></app-crud-message-display>
+    <app-loader [isLoading]="crudService.isLoading"></app-loader>
+    <button type="submit" class="btn btn-sm btn-primary"
+      (click)="crudService.currentForm.valid && saveLink()">Save</button>
+  </div>
+</form>

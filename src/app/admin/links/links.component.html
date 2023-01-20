@@ -1,0 +1,42 @@
+<div class="content-box" id="content-box">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="div-left">
+        <app-left-menu></app-left-menu>
+      </div>
+      <div class="div-right" id="div-right">
+        <app-loader [isLoading]="isLoading" [showLargeLoader]="true"></app-loader>
+        <div *ngIf="!isLoading">
+          <h3>Links</h3>
+
+          <table class="table table-sm table-bordered table-white">
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Url</th>
+              <th>Project</th>
+              <th class="th-action">Actions</th>
+            </tr>
+
+            <tr *ngFor="let link of linksList; let i=index;">
+              <td>{{i+1}}</td>
+              <td>{{link.title}}</td>
+              <td>{{(link.url || '').substr(0,50)}}</td>
+              <td>{{link.projectName || link.projectId }}</td>
+
+              <td class="text-center">
+                <app-action-button [obj]="link" (onEdit)="edit($event)" (onDelete)="delete($event)" caption="bookmark">
+                </app-action-button>
+              </td>
+            </tr>
+
+            <tr *ngIf="linksList.length===0">
+              <td colspan="6">No records found.</td>
+            </tr>
+          </table>
+          <button class="btn btn-sm btn-primary" (click)="addLink()">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div ngbDropdown class="d-inline-block sm" placement="bottom-right">
+  <button class="btn btn-secondary btn-xs selected-project" id="dropdownBasic1" [attr.disabled]="disable ? true : null"
+    ngbDropdownToggle>{{selectedValue || 'All'}}</button>
+  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+    <button (click)="itemSelected(null)" class="dropdown-item">All Projects</button>
+    <button *ngFor="let itm of list; let i=index;" (click)="itemSelected(itm)"
+      class="dropdown-item">{{itm.name}}</button>
+  </div>
+</div>
